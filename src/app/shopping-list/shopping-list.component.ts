@@ -20,7 +20,10 @@ export class ShopppingListComponent {
     }
 
     ngOnInit(){
-        
+    }
+
+    onIngredientAdded(ingredient) {
+        this.ingredients.push(ingredient);
     }
 
 };
