@@ -1,0 +1,222 @@
+----------------------------(FOLDER 1. Getting Started)-----------------------------------
+2. What is Angular ?
+    Angular is a JavaScript Framework which allows you to create reactive 
+    Single-Page-Applications (SPA)
+
+5. Project Setup and First App
+    - npm install -g @angular/cli@latest
+    - ng new my-first-app
+
+6. Editing the First App
+    - import { FormsModule } from '@angular/forms'; --> app.module.ts
+    - <input type='text' [(ngModel)]='name'> --> app.component.html
+
+9. What is TypeScript ? 
+    - More features than vanilla JS (e.g Types, Classes, Interfaces)
+
+10. A Basic Project Setup using Bootstrap for Styling
+    - npm install --save bootstrap@3
+    - angular.json to add bootstrap directory to load the css styles
+    - tsc typing
+
+-------------------------------(FOLDER 2. The Basics)---------------------------------------
+3. Components are Important
+    - Keep in mind: Angular in the end is a JS framework, 
+    changing your DOM ('HTML') at runtime.
+4. 
+
+7. Creating Components with the CLI
+    - ng generate component servers
+
+10. Fully Understanding the Component Selector
+    - by Attribute: <div app-servers></div>
+    - by selector: <app-server></app-server>
+    - by Class: <div class="app-server"></div>
+
+12. What is Databinding
+    - Databinding = Communication    TypeScript Code(Business Logic) <---> Template (HTML)
+    - TO make the communication between typeScript Code and Template (HTML) you can use:
+        OutputData
+        + String Interpolation ({{ data }})
+        + Property Binding ([property]="data")
+
+        React to (User) Events
+        + Event Binding ((event)="expresion")
+
+        Combination of Both 
+        + Two-Way-Binding ([(ngModel)]="data")
+
+13. String Interpolation
+    + 
+
+14. Event Binding
+    - 
+
+16. Event Binding
+    - minute 03:36
+
+17. Pasing and Using Data with Event Binding
+    - <input 
+        type='text'
+        class='form-control'
+        (input)='onUpdateServerName($event)'
+      >
+    - onUpdateServerName(event: Event) {
+         this.serverName = (<HTMLInputElement>event.target).value;
+      }
+
+18. Two-Way-Data-Binding
+    - 
+
+21. Combining all Forms of Databinding
+    - 
+
+23. Understanding Directives
+    - What are Directives ? : Instructions in the DOM
+
+24. Using ngIf to Output Data Conditionally
+    - 
+
+25. Enhancing ngIf with an Else Condition
+    - <p *ngIf="serverCreated; else noServer">Server was created, server nameis {{ serverName }}</p>
+      <ng-template #noServer>
+       <p> 
+          No server was created
+       </p>
+      </ng-template>
+
+26. Styling Elements Dynamically with ngStyle
+    - <p [ngStyle]='{backgroundColor: getColor()}'>{{ serverId }} - {{ serverStatus }}</p>
+    - 
+
+27. Applying CSS Classes Dynamically with ngClass
+    - <p 
+       [ngStyle]="{backgroundColor: getColor()}"
+       [ngClass]="{online: serverStatus === 'online'}"
+      >
+      {{ serverId }} - {{ serverStatus }}
+      </p>
+    
+28. Outputting Lists with ngFor
+    - <app-server *ngFor="let server of servers"></app-server>
+
+-----------------------(FOLDER 3. Course Project - The Basics)-------------------------------
+5. Creating the Components
+    - ng g c recipes/recipe-list --spec false
+
+6. Using the Components
+    - 02:51
+
+-------------------------------(FOLDER 4. Debugging)-----------------------------------------
+1. Understanding Angular Error Messages
+    - 
+2. Debugging Code in the Browser Using Sourcemaps
+    - the ts files can be found on the browser on : 
+        1.Sources 
+        2.webpack 
+        3. . 
+        4.src/(Here are the app components)
+
+3. Using Auguryto Dive into Angular Apps 
+    - https://augury.rangle.io/
+
+---------------------(FOLDER 5.Components _ Databinding Deep Dive)---------------------------
+4. Binding to Custom Properties  
+    - The element var now is accesible to any parent 
+      component that uses the app-server-element component
+        @Input() element: { type:string, name:string, content:string};
+
+    - <app-server-element 
+        *ngFor="let serverElement of serverElements"
+        [element]="serverElement"  
+      >
+      </app-server-element>
+
+6. Binding to Customs Events
+------------------------------<app.component.html>-------------------------------------
+    - <app-cockpit 
+        (serverCreated)="onServerAdded($event)"
+        (bpCreated)='onBlueprintAdded($event)'
+      >
+      </app-cockpit>
+------------------------------</app.component.html>------------------------------------
+
+------------------------------<app.component.ts>---------------------------------------
+    - serverElements = [{type:'server',name:'Testserver',content:'Just a test!'}];
+
+    onServerAdded(serverData:{serverName: string, serverContent: string}) {
+        this.serverElements.push({
+        type: 'server',
+        name: serverData.serverName,
+        content: serverData.serverContent
+        });
+    }
+
+    onBlueprintAdded(blueprintData:{blueprintName: string, blueprintContent: string}) {
+        this.serverElements.push({
+        type: 'blueprint',
+        name: blueprintData.blueprintName,
+        content: blueprintData.blueprintContent
+        });
+    }
+-------------------------------</app.component.ts>--------------------------------------
+
+--------------------------------<cockpit.component.ts>----------------------------------
+@Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+@Output('bpCreated') blueprintCreated = new EventEmitter<{blueprintName: string, blueprintContent: string}>();
+newServerName = '';
+newServerContent = '';
+
+onAddServer() {
+    this.serverCreated.emit({
+      serverName: this.newServerName, 
+      serverContent: this.newServerContent
+    }); //Emits a new event of serverCreated listed above
+  }
+
+  onAddBlueprint() {
+    this.blueprintCreated.emit({
+      blueprintName: this.newServerName, 
+      blueprintContent: this.newServerContent
+    }); //Emits a new event of serverCreated listed above
+  }
+
+-------------------------------</cockpit.component.ts>---------------------------------------
+
+10. More on View Encapsulation
+    - import { ViewEncapsulation } from '@angular/core';
+    - encapsulation: ViewEncapsulation. (
+        Emulated: is the default configuration by Angular, 
+        Native, 
+        None: is used for applying styles globally, 
+        ShadowDom)
+
+11. Using Local references in Templates
+    - <input 
+      type="text" 
+      class="form-control"
+      #serverNameInput>
+
+    - <button
+      style="margin: 3px" 
+      class="btn btn-primary"
+      (click)="onAddServer(serverNameInput)">Add Server</button>
+
+13. Projecting Contentinto Components with ng-content
+    - ng-content is for adding content inside of the selector 
+      (<app-component> here </app-component>)
+
+14. Understanding the Component Lifecycle
+    - Lifecycle: 
+    1. ngOnChanges: Called after a bound input property changes 
+    2. ngOnInit: Called once the component is initialized
+    3. ngDoCheck: Called during every change detection run
+    4. ngAfterContentInit: Called after content (ng-content) has been projected into View
+    5. ngAfterContentChecked: Called every time the projected contenthas been checked 
+    6. ngAfterViewInit: Called after the component's view (and child views) has been initialized
+    7. ngAfterViewChecked: Called every time the view (and child views) have been checked
+    8. ngOnDestroy: Called once the component is about to be destroyed
+
+15. Seeing Lifecycle Hooks in Action
+    
+
