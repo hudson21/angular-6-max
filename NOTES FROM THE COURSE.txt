@@ -440,3 +440,40 @@ export class NewAccountComponent {
         );
     }
 }
+
+=====================================================================================
+What is the benefit of register a service in app.module.ts individual component
+in angular 4 ? 
+
+When you add your service in the root providers of your application, 
+all components will inject the same instance of the service. So only one 
+instance will be created during the application. In this case you can 
+keep state in your service.
+
+When you add your service in the providers of your Component, 
+every time a new instance of that component will be created, 
+new instance of service also will be created. In this case you 
+can't keep state in this type of service.
+
+Depending on your logic provide where you need, but it's common 
+case to provide all services in the root module.
+=====================================================================================
+Routes:
+    <router-outlet></router-outlet>
+<a routerLink="/servers"></a> //absolute path localhost/servers
+<a routerLink="servers"></a> //relative path localhost/servers/servers
+
+<li 
+    role="presentation" 
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+    <a routerLink="/">Home</a>
+</li>
+
+QueryParams Handling:
+onEdit() {
+    this.router.navigate(['edit'], 
+    {relativeTo: this.route, queryParamsHandling: 'preserve'});
+    //merge: to merge the old queryParams with the new ones 
+    //preverve: override the old ones and to keep the new ones
+  }
