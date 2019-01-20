@@ -478,4 +478,28 @@ onEdit() {
     //preverve: override the old ones and to keep the new ones
   }
 
-  
+============================ Understanding Observables ==================================
+What is an Observable ?
+R. It is an object we import from a third party package like Rxjs. It follows the 
+observable pattern (We have an observable and an observer). Between we have a stream 
+(A timeline where we can have multiple events emitted by the observable)
+
+Observer: It is the code that you implement: It is the subscribe function
+Three ways of handling the data: 
+    1. Handle Data
+    2. Handle Error
+    3. Handle Completion
+
++ npm install --save rxjs-compat
+
+import {Observable} from 'rxjs/Rx'; // It is used when you use Observable methods
+
+-------------- Where to learn more about Observables -------------------
+reactive.io/rxjs/
+
+Subject property: Observable and Observer at the same time
+
+Operators in Observables: This operators allow you to transform the data you receive 
+to something else and still stay inside of the Observable.
+
+--------------------RxJs 6 without rxjs-compat----------------------------
