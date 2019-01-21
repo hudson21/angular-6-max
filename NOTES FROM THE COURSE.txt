@@ -440,3 +440,105 @@ export class NewAccountComponent {
         );
     }
 }
+
+=====================================================================================
+What is the benefit of register a service in app.module.ts individual component
+in angular 4 ? 
+
+When you add your service in the root providers of your application, 
+all components will inject the same instance of the service. So only one 
+instance will be created during the application. In this case you can 
+keep state in your service.
+
+When you add your service in the providers of your Component, 
+every time a new instance of that component will be created, 
+new instance of service also will be created. In this case you 
+can't keep state in this type of service.
+
+Depending on your logic provide where you need, but it's common 
+case to provide all services in the root module.
+=====================================================================================
+Routes:
+    <router-outlet></router-outlet>
+<a routerLink="/servers"></a> //absolute path localhost/servers
+<a routerLink="servers"></a> //relative path localhost/servers/servers
+
+<li 
+    role="presentation" 
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+    <a routerLink="/">Home</a>
+</li>
+
+QueryParams Handling:
+onEdit() {
+    this.router.navigate(['edit'], 
+    {relativeTo: this.route, queryParamsHandling: 'preserve'});
+    //merge: to merge the old queryParams with the new ones 
+    //preverve: override the old ones and to keep the new ones
+  }
+
+============================ Understanding Observables ==================================
+What is an Observable ?
+R. It is an object we import from a third party package like Rxjs. It follows the 
+observable pattern (We have an observable and an observer). Between we have a stream 
+(A timeline where we can have multiple events emitted by the observable)
+
+Observer: It is the code that you implement: It is the subscribe function
+Three ways of handling the data: 
+    1. Handle Data
+    2. Handle Error
+    3. Handle Completion
+
++ npm install --save rxjs-compat
+
+import {Observable} from 'rxjs/Rx'; // It is used when you use Observable methods
+
+-------------- Where to learn more about Observables -------------------
+reactive.io/rxjs/
+
+Subject property: Observable and Observer at the same time
+
+Operators in Observables: This operators allow you to transform the data you receive 
+to something else and still stay inside of the Observable.
+
+--------------------RxJs 6 without rxjs-compat----------------------------
+
+============================== Forms ==========================================
+Angular offers two approaches at the time of handling forms
+1. Template-Driven: Angular infers the Form Object from the DOM
+2. Reactive: Form is created programmatically and synchronized with the DOM
+
+In app.module.ts --> import { FormsModule } from '@angular/forms';
+
+Grouping Form Controls --> <div ngModelGroup="userData">
+                            <input 
+                                type="text"/>
+                                ...
+                           </div>
+
+
+suggestUserName() {
+    const suggestedName = 'Superuser';
+    /*this.signupForm.setValue({
+      userData: {
+        username: suggestedName,
+        email: '',
+      },
+      secret: 'pet',
+      questionAnswer: '',
+      gender: 'male'
+    });*/
+    this.signupForm.form.patchValue({
+      userData: {
+        username: suggestedName
+      }
+    });
+}
+setValue: Set all the values of the form
+patchValue: Set specific values of your form
+
+================================ Reactive Form Approach ==========================================
+import { ReactiveFormsModule } from '@angular/forms';
+
+imports: [ReactiveFormsModule]
