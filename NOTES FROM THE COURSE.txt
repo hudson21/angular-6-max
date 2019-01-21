@@ -503,3 +503,37 @@ Operators in Observables: This operators allow you to transform the data you rec
 to something else and still stay inside of the Observable.
 
 --------------------RxJs 6 without rxjs-compat----------------------------
+
+============================== Forms ==========================================
+Angular offers two approaches at the time of handling forms
+1. Template-Driven: Angular infers the Form Object from the DOM
+2. Reactive: Form is created programmatically and synchronized with the DOM
+
+In app.module.ts --> import { FormsModule } from '@angular/forms';
+
+Grouping Form Controls --> <div ngModelGroup="userData">
+                            <input 
+                                type="text"/>
+                                ...
+                           </div>
+
+
+suggestUserName() {
+    const suggestedName = 'Superuser';
+    /*this.signupForm.setValue({
+      userData: {
+        username: suggestedName,
+        email: '',
+      },
+      secret: 'pet',
+      questionAnswer: '',
+      gender: 'male'
+    });*/
+    this.signupForm.form.patchValue({
+      userData: {
+        username: suggestedName
+      }
+    });
+}
+setValue: Set all the values of the form
+patchValue: Set specific values of your form
