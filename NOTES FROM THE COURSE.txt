@@ -559,3 +559,9 @@ Angular does not rerender a pipe if the data changes
 Updating Arrays or Objects does not trigger it.
 
 --------------- Async Pipes -------------------------
+
+
+==========================  HTTP Requests =======================================================
+import { HttpModule } from '@angular/http';
+imports:[HttpModule]
+https://firebase.google.com
