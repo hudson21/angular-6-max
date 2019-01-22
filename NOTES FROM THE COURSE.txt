@@ -542,3 +542,20 @@ patchValue: Set specific values of your form
 import { ReactiveFormsModule } from '@angular/forms';
 
 imports: [ReactiveFormsModule]
+
+======================================= Pipes ====================================================
+What are pipes ? 
+R. Pipes are a feature which allows you to transform output in your template. It transform some output
+
+https://angular.io/docs/ts/latest/api/ --> Filter pipe 
+
+Combine pipes in Angular
+Pipes are read form left to right
+
+----------------------- Creating a Custom Pipe -----------------------------------
+1. Create a new file with the name of name-of-the-file.pipe.ts
+ng generate pipe name-of-the-pipe
+Angular does not rerender a pipe if the data changes
+Updating Arrays or Objects does not trigger it.
+
+--------------- Async Pipes -------------------------
