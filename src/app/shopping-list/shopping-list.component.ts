@@ -21,14 +21,19 @@ export class ShopppingListComponent implements OnInit, OnDestroy {
         this.ingredients = this.slService.getIngredients();
         this.subscription = this.slService.ingredientsChanged
             .subscribe(
-                (ingreedients: Ingredient[]) => {
-                    this.ingredients= ingreedients;
+                (ingredients: Ingredient[]) => {
+                    this.ingredients = ingredients;
                 }
             );
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    onEditItem(id: number) {
+        //Here we are emiting the id in an observable
+        this.slService.startedEditing.next(id);
     }
 
 };
