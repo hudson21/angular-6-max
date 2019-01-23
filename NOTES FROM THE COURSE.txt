@@ -565,3 +565,6 @@ Updating Arrays or Objects does not trigger it.
 import { HttpModule } from '@angular/http';
 imports:[HttpModule]
 https://firebase.google.com
+
+========================== Authentication =======================================================
+npm install --save firebase
