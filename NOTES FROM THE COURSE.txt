@@ -569,3 +569,37 @@ https://firebase.google.com
 ========================== Authentication =======================================================
 npm install --save firebase@5.3.0
 "firebase": "^5.3.0",
+
+========================== Modules =========================================================
+Feature Models:
+ShoppingListComponent (and all its children components) --> Feature model
+RecipeComponent (and all its children components) --> Feature Model
+
+CommonModule is the one who gives the default directive features like ngIf, ngFor, ect 
+
+BrowserModule contains all the features of CommonModule (It is only needed in the AppModule)
+
+YOU MUST NOT DECLARE Components, directives, etc in more than one module
+
+Don´t provide Services in Shared Modules!
+Especially not, if you plan to use them in Lazy Loaded Modules! 
+
+
+Core Modules are the ones only used for the Root Component (App)
+
+=========================== Ahead-of-Time Compilation =================================
+Just in Time Compilation: This is the default onfiguration by Angular
+    1. Development
+    2. Production
+    3. App downloaded in Browser
+    4. Angular Parses & Compiles Templates(to JavaScript)
+Ahead of Time Compilation
+    1. Development
+    2. Angular Parses & Compiles Templates (to JavaScript)
+    3. Production
+    4. App downloaded in Browser
+
+ng build --prod --aot
+
+imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
+Preloads all the lazy modules ones the app has been loaded
