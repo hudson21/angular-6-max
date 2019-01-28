@@ -603,3 +603,29 @@ ng build --prod --aot
 
 imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
 Preloads all the lazy modules ones the app has been loaded
+
+==================== Deployment Steps & Things to Keep in Mind ==========================
+1. Build your App for Production
+2. Consider AoT Compilation
+3. Set the correct <base> element: For example.com/my-app you should have 
+<base href="/my-app">
+4. Make sure your Server ALWAYS returns index.html
+Routes are registered in Angular App, so the server won´t know your routes! 
+Return index.html in case of 404 errors
+
+==================== Example Deploying to AWS ===========================================
+1. Create a bucket --> Bucket Name --> US Standard
+2. Static Website Hosting --> Enable website hosting --> 
+    Index Document: index.html
+    Error Document: index.html
+    Save
+3. Permissions --> Add bucket policy --> Sample bucket policy
+   Granting Read-Only Permission to an Anonymous User (Copy the code shown)
+   replace the bucket name with yours 
+   Example: Resource:["arn:aws:s3:name-of-your-bucket"]
+   Save
+4. Click in the bucket created
+5. In your Angular app --> ng build --prod --aot
+                           ng build --prod --aot --base-href /my-app/
+6. Change the base in the index.html <base href=""> 
+7. Upload all the files within the dist folder
