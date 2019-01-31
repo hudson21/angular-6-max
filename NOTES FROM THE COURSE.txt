@@ -629,3 +629,6 @@ Return index.html in case of 404 errors
                            ng build --prod --aot --base-href /my-app/
 6. Change the base in the index.html <base href=""> 
 7. Upload all the files within the dist folder
+
+====================================== Interceptors ================================
+Check out in the documentation of angular about more detailed information 

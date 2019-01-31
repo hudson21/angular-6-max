@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import 'rxjs/Rx';
 
 import { RecipeService } from "./recipe.service";
@@ -12,11 +12,25 @@ export class DataStorageService {
                 private recipeService: RecipeService,
                 private authService: AuthService) {}
 
+    //Set overrides all the existing parameters
     storeRecipes() {
-        const token = this.authService.getToken();
+        //const token = this.authService.getToken();
+        //const headers = new HttpHeaders().set('Authorization', 'Bearer asdasdsasa');
         //With a put request I will override the existing data
-      return  this.httpClient.put(`https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json?auth=${token}`,
-            this.recipeService.getRecipes()) ;
+      
+        /*
+            return  this.httpClient.put(`https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json`,
+            this.recipeService.getRecipes(), {
+                //observe: 'events',
+                observe: 'body',
+                //headers: headers
+                params: new HttpParams().set('auth', token)
+            }) ;
+        */
+
+        const req = new HttpRequest('PUT', 'https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json', 
+        this.recipeService.getRecipes(), {reportProgress: true})
+        return this.httpClient.request(req);
     }
 
     getRecipes() {
