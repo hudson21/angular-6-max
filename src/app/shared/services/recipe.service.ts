@@ -1,11 +1,13 @@
-import {  Injectable } from '@angular/core';
+//import {  Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+//import { Store } from '@ngrx/store';
 
 import { Recipe } from '../../recipes/recipes.model'; 
 import { Ingredient } from '../ingredient.model';
-import { ShoppingListService } from './shopping-list.service';
-import { Subject } from 'rxjs';
+/*import { ShoppingListService } from './shopping-list.service';*/
+//import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
-@Injectable()//Inject a Service into  a Service
+//@Injectable()//Inject a Service into  a Service
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
 
@@ -28,7 +30,8 @@ export class RecipeService {
         )
     ]; //The var is being declared a Recipe Model Array
 
-    constructor(private slService: ShoppingListService){}
+    constructor(/*private slService: ShoppingListService,*/
+                /*private store: Store<{shoppingList: {ingredients: Ingredient[]}}>*/){}
 
     setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
@@ -45,9 +48,9 @@ export class RecipeService {
         return this.recipes[id];
     }
 
-    addIngredientsToShoppingList(ingredients: Ingredient[]) {
-        this.slService.addIngredients(ingredients);
-    }
+    /*addIngredientsToShoppingList(ingredients: Ingredient[]) {
+        this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
+    }*/
 
     addRecipe(recipe: Recipe) {
         this.recipes.push(recipe);
