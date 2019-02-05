@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
 
@@ -26,7 +27,8 @@ export class HeaderComponent implements OnInit {
 
     onSaveData() {
         this.dataStorageService.storeRecipes()
-            .subscribe((response: Response) => console.log(response));
+            .subscribe((response: HttpEvent<Object>) => 
+                console.log(response.type === HttpEventType.Sent));
     }
 
     onFetchData() {
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
         this.authService.logout();
     }
 
-    isAuthenticated() {
+    /*isAuthenticated() {
         return this.authService.isAuthenticated();
-    }
+    }*/
 } 
