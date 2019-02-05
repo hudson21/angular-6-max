@@ -630,7 +630,19 @@ Return index.html in case of 404 errors
 6. Change the base in the index.html <base href=""> 
 7. Upload all the files within the dist folder
 
+
+import { HttpClientModule } from '@angular/common/http';
+
+====================== NgRx ====================================================
+npm install --save @ngrx/store
+npm install --save @ngrx/effects
+npm install --save @ngrx/router-store
+npm install --save @ngrx/store-devtools
+
 ====================================== Interceptors ================================
 Check out in the documentation of angular about more detailed information 
 
-====================================== Ngrx ==========================================================
+=======
+
+================================== PUG ============================================
+npm install -g pug-cli 

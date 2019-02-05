@@ -4,13 +4,13 @@ import 'rxjs/Rx';
 
 import { RecipeService } from "./recipe.service";
 import { Recipe } from "src/app/recipes/recipes.model";
-import { AuthService } from './auth.service';
+//import { AuthService } from './auth.service';
 
 @Injectable()
 export class DataStorageService {
     constructor(private httpClient: HttpClient,
                 private recipeService: RecipeService,
-                private authService: AuthService) {}
+                /*private authService: AuthService*/) {}
 
     //Set overrides all the existing parameters
     storeRecipes() {
@@ -34,10 +34,9 @@ export class DataStorageService {
     }
 
     getRecipes() {
-       const token = this.authService.getToken();
-
+        
        //this.httpClient.get<Recipe[]>(`https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json?auth=${token}`)
-       this.httpClient.get<Recipe[]>(`https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json?auth=${token}`, {
+       this.httpClient.get<Recipe[]>(`https://udemy-ng-http-8f4c2.firebaseio.com/recipes.json`, {
           observe: 'body',
           responseType: 'json' //json is the default if you dont add it
        })     
