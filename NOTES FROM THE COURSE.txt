@@ -632,3 +632,5 @@ Return index.html in case of 404 errors
 
 ====================================== Interceptors ================================
 Check out in the documentation of angular about more detailed information 
+
+====================================== Ngrx ==========================================================
