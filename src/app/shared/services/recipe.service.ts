@@ -42,28 +42,28 @@ export class RecipeService {
         return this.recipes.slice(); //This will return a new array which is a copy from the original one
     }
 
-    getRecipe(id: number)  {
+    /*getRecipe(id: number)  {
         //Slice will give you a copy of the original array
         //return this.recipes.slice()[id];
         return this.recipes[id];
-    }
+    }*/
 
     /*addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
     }*/
 
-    addRecipe(recipe: Recipe) {
+    /*addRecipe(recipe: Recipe) {
         this.recipes.push(recipe);
         this.recipesChanged.next(this.recipes.slice());//A copy of the recipes array(splice)
-    }
+    }*/
 
-    updateRecipe(id: number, newRecipe: Recipe) {
+    /*updateRecipe(id: number, newRecipe: Recipe) {
         this.recipes[id] = newRecipe;
         this.recipesChanged.next(this.recipes.slice());//A copy of the recipes array(splice)
-    }
+    }*/
 
-    deleteRecipe(id: number) {
+    /*deleteRecipe(id: number) {
         this.recipes.splice(id, 1);
         this.recipesChanged.next(this.recipes.slice());
-    }
+    }*/
 }

@@ -646,3 +646,5 @@ Check out in the documentation of angular about more detailed information
 
 ================================== PUG ============================================
 npm install -g pug-cli 
+
+================================== What are ngrx/effects =================================================
