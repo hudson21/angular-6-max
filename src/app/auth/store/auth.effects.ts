@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect } from "@ngrx/effects";
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Router } from "@angular/router";
+
 import 'rxjs';
 
 import { fromPromise } from 'rxjs/observable/fromPromise';
