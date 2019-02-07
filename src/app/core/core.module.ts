@@ -7,8 +7,8 @@ import { AppRoutingModule } from "../app-routing.module";
 import { HomeComponent } from "./home/home.component";
 
 //import { ShoppingListService } from "../shared/services/shopping-list.service";
-import { RecipeService } from "../shared/services/recipe.service";
-import { DataStorageService } from "../shared/services/data-storage.service";
+//import { RecipeService } from "../shared/services/recipe.service";
+//import { DataStorageService } from "../shared/services/data-storage.service";
 //import { AuthService } from "../shared/services/auth.service";
 
 import { AuthInterceptor } from "../shared/auth.interceptor";
@@ -29,8 +29,8 @@ import { LoggingInterceptor } from "../shared/login.interceptor";
     ],
     providers:[      
         //ShoppingListService, 
-        RecipeService, 
-        DataStorageService, 
+        //RecipeService, 
+        //DataStorageService, 
         //AuthService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true},
