@@ -651,3 +651,4 @@ npm install -g pug-cli
 + Listen for ngrx/store actions
 + Isolate side effects from components
 + Communicate outsite of Angular
++ import 'rxjs/add/operator/take';
