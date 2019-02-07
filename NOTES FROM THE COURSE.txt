@@ -648,3 +648,4 @@ Check out in the documentation of angular about more detailed information
 npm install -g pug-cli 
 
 ================================== What are ngrx/effects =================================================
+import 'rxjs/add/operator/take';

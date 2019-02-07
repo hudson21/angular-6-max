@@ -2,6 +2,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/c
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import 'rxjs/add/operator/take';
 import 'rxjs';
 
 //import { AuthService } from "./services/auth.service";
